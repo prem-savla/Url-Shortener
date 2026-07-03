@@ -1,0 +1,20 @@
+CREATE TABLE urls (
+
+    id BIGINT PRIMARY KEY,
+
+    short_code VARCHAR(16) UNIQUE NOT NULL,
+
+    original_url TEXT NOT NULL,
+
+    user_id UUID NOT NULL
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+
+    expires_at TIMESTAMPTZ,
+
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
